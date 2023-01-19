@@ -2,12 +2,16 @@ const express = require('express')
 const expressLayouts = require('express-ejs-layouts')
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
+const path = require('path')
 const connectDB = require('./config/db')
 
 dotenv.config({ path: './config/config.env' })
 
 connectDB()
 const app = express()
+
+// static folder
+app.use(express.static(path.join(__dirname, 'public')))
 
 // ejs
 app.use(expressLayouts)
