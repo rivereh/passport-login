@@ -1,14 +1,20 @@
 const express = require('express')
 const expressLayouts = require('express-ejs-layouts')
+const mongoose = require('mongoose')
 const dotenv = require('dotenv')
+const connectDB = require('./config/db')
 
 dotenv.config({ path: './config/config.env' })
 
+connectDB()
 const app = express()
 
 // ejs
 app.use(expressLayouts)
 app.set('view engine', 'ejs')
+
+// bodyparser
+app.use(express.urlencoded({ extended: false }))
 
 // routes
 app.use('/', require('./routes/index'))
